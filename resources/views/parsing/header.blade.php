@@ -8,7 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
  
 <title>Gentellela Alela! | </title>
- 
+ <meta name="csrf-token" content="{{csrf_token()}}" /> 
+
 <!-- Bootstrap core CSS -->
  
 <link href="{{asset('theme/css/bootstrap.min.css')}}" rel="stylesheet">

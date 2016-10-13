@@ -38,8 +38,18 @@ class PelangganController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $this->validate($request, [
+        'nama_pelanggan' => 'required',
+        'alamat_pelanggan' => 'required',
+        'no_telepon'=> 'required',
+        ]);
+        $pelanggan = new Pelanggan();
+        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+        $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
+        $pelanggan->no_telepon= $request->no_telepon;
+        $pelanggan->save();
+        return ['<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> Data berhasil di tambahkan !'];
     }
 
     /**
@@ -61,7 +71,8 @@ class PelangganController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pelanggan = Pelanggan::find($id);
+        return $pelanggan;
     }
 
     /**
@@ -73,7 +84,13 @@ class PelangganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pelanggan = Pelanggan::find($id);
+        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+        $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
+        $pelanggan->no_telepon= $request->no_telepon;
+        $pelanggan->save();
+
+        return ['<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> Data berhasil di rubah !'];
     }
 
     /**
@@ -84,7 +101,9 @@ class PelangganController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pelanggan = Pelanggan::find($id);
+        $pelanggan->delete();
+        return ['<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> Data berhasil di hapus !'];
     }
     public function getdatatable()
     {
@@ -96,8 +115,8 @@ class PelangganController extends Controller
          return Datatables::of($fetch)
     
             ->addColumn('action', function ($data) {
-                return '<button class="btn btn-info  open-modal" value="'.$data->id.'"> Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>' . '
-                <button class="btn btn-danger delete-dokter" value="'.$data->id.'"> Delete <i class="fa fa-trash-o"> </button>';
+                return '<button class="btn btn-info  edit-data" value="'.$data->id.'"> Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>' . '
+                <button class="btn btn-danger delete-data" value="'.$data->id.'"> Delete <i class="fa fa-trash-o"> </button>';
             })
             ->make(true);
     }
