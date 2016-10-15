@@ -17,5 +17,8 @@ Route::group(['prefix' => 'service'], function() {
     });
     Route::get('pelanggan/data-table','PelangganController@getDataTable');
     Route::resource('pelanggan','PelangganController');
+
+    Route::get('barang/data-table','BarangServiceController@getDataTable');
+    Route::resource('barang','BarangServiceController');
     
 });

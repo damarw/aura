@@ -2,7 +2,7 @@
 
 namespace App\Modules\Service\Http\Controllers;
 
-use App\Modules\Service\Models\Pelanggan;
+use App\Modules\Service\Models\Pelanggan as DataUtama;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 use App\Http\Requests;
@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 use DB;
 class PelangganController extends Controller
 {
+
+    private $folder ='pelanggan';
+    private $route='pelanggan';
+    private 
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +23,7 @@ class PelangganController extends Controller
     public function index()
     {
        
-        return view('service::pelanggan.index');
+        return view('service::'.$this->folder.'.'.'index');
     }
 
     /**
@@ -44,11 +49,11 @@ class PelangganController extends Controller
         'alamat_pelanggan' => 'required',
         'no_telepon'=> 'required',
         ]);
-        $pelanggan = new Pelanggan();
-        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
-        $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
-        $pelanggan->no_telepon= $request->no_telepon;
-        $pelanggan->save();
+        $data = new Pelanggan();
+        $data->nama_pelanggan = $request->nama_pelanggan;
+        $data->alamat_pelanggan = $request->alamat_pelanggan;
+        $data->no_telepon= $request->no_telepon;
+        $data->save();
         return ['<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> Data berhasil di tambahkan !'];
     }
 
@@ -71,8 +76,8 @@ class PelangganController extends Controller
      */
     public function edit($id)
     {
-        $pelanggan = Pelanggan::find($id);
-        return $pelanggan;
+        $data = DataUtama::find($id);
+        return $data;
     }
 
     /**
@@ -84,11 +89,11 @@ class PelangganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pelanggan = Pelanggan::find($id);
-        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
-        $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
-        $pelanggan->no_telepon= $request->no_telepon;
-        $pelanggan->save();
+        $data = DataUtama::find($id);
+        $data->nama_pelanggan = $request->nama_pelanggan;
+        $data->alamat_pelanggan = $request->alamat_pelanggan;
+        $data->no_telepon= $request->no_telepon;
+        $data->save();
 
         return ['<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> Data berhasil di rubah !'];
     }
@@ -101,14 +106,14 @@ class PelangganController extends Controller
      */
     public function destroy($id)
     {
-        $pelanggan = Pelanggan::find($id);
-        $pelanggan->delete();
+        $data = DataUtama::find($id);
+        $data->delete();
         return ['<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a> Data berhasil di hapus !'];
     }
     public function getdatatable()
     {
         
-             $fetch=Pelanggan::all();
+             $fetch=DataUtama::all();
            // dd($fetch);
        // return $fetch;
 
