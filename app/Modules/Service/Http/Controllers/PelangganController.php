@@ -13,7 +13,7 @@ class PelangganController extends Controller
 
     private $folder ='pelanggan';
     private $route='pelanggan';
-    private 
+   
 
     /**
      * Display a listing of the resource.
@@ -49,7 +49,7 @@ class PelangganController extends Controller
         'alamat_pelanggan' => 'required',
         'no_telepon'=> 'required',
         ]);
-        $data = new Pelanggan();
+        $data = new DataUtama();
         $data->nama_pelanggan = $request->nama_pelanggan;
         $data->alamat_pelanggan = $request->alamat_pelanggan;
         $data->no_telepon= $request->no_telepon;
