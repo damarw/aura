@@ -20,5 +20,8 @@ Route::group(['prefix' => 'service'], function() {
 
     Route::get('barang/data-table','BarangServiceController@getDataTable');
     Route::resource('barang','BarangServiceController');
+
+    Route::get('jenis-service/data-table', 'JenisServiceController@getDataTable');
+    Route::resource('jenis-service','JenisServiceController');
     
 });

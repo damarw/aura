@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class BarangService extends Model
 {
-    //
+    protected $fillable=['nama_service'];
 }

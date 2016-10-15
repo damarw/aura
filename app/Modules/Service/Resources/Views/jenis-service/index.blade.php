@@ -44,10 +44,8 @@
                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                            <thead>
                                <th>Id</th>
-                               <th>Nama Pelanggan</th>
-                               <th>Alamat</th>
-                               <th>No Telepon</th>
-                               <th>Action</th>
+                               <th>Nama Service</th>
+                               <th style="width: 50px;">Action</th>
                            </thead>
                            <tbody>
                                
@@ -72,23 +70,13 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <form id="form-data" data-parsley-validate name="add-data" role="form" class="form-horizontal form-label-left">
             <div class="form-group">
-              <label class="col-md-3 control-label" for="">Nama Pelanggan</label>
+              <label class="col-md-3 control-label" for="">Nama Service</label>
               <div class="col-md-9 col-lg-9">
-                <input type="text" name="nama_pelanggan" value="" class="form-control" id="nama_pelanggan" placeholder="Input field" required >
+                <input type="text" name="nama_service" value="" class="form-control" id="nama_service" placeholder="Input field" required >
               </div>
             </div>
-             <div class="form-group">
-              <label class="col-md-3 control-label" for="">Alamat</label>
-              <div class="col-md-9 col-lg-9">
-                <input type="text" name="alamat_pelanggan" value="" class="form-control" id="alamat_pelanggan" placeholder="Input field" required >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-3 control-label" for="">No Telepon</label>
-              <div class="col-md-9 col-lg-9">
-                <input type="text" name="no_telepon" value="" class="form-control" id="no_telepon" placeholder="Input field" required>
-              </div>
-            </div>
+             
+           
             <input type="hidden" name="pm-key" id="pm-key" value="">
             <div class="metod">
               
@@ -132,8 +120,7 @@
 @section('js')
 <script>
 $(document).ready(function() {
-    
-    var url = '{{url('service/pelanggan')}}'
+    var url = '{{ url('service/jenis-service') }}'
 
      
         var table = $('#datatable-responsive').DataTable({
@@ -142,9 +129,7 @@ $(document).ready(function() {
         "ajax": url + '/' + 'data-table',
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'nama_pelanggan', name: 'nama_pelanggan' },
-            { data: 'alamat_pelanggan', name: 'alamat_pelanggan' },
-            { data: 'no_telepon', name: 'no_telepon' },
+            { data: 'nama_service', name: 'nama_service' },
             { data: 'action', name: 'action', orderable: false, searchable: false},
             
         ]
@@ -193,9 +178,7 @@ $(document).ready(function() {
         var task_id = $(this).val();
         $.get(url + '/' + task_id + '/' + 'edit', function(data){
           $('#pm-key').val(task_id);
-          $('#nama_pelanggan').val(data.nama_pelanggan);
-          $('#alamat_pelanggan').val(data.alamat_pelanggan);
-          $('#no_telepon').val(data.no_telepon);
+          $('#nama_service').val(data.nama_service);
           $('#metode').val('edit');
           $('#tambahdata').modal('show');
         })
